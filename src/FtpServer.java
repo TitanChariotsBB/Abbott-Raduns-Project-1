@@ -25,7 +25,10 @@ public class FtpServer {
 
             do {
                 String messageFromClient = inStream.readUTF();
-                if (messageFromClient.equals("QUIT")) break;
+                if (messageFromClient.equals("QUIT")) {
+                    System.out.println("Connection terminated by client");
+                    break;
+                }
                 System.out.println("Received command " + messageFromClient);
 
 

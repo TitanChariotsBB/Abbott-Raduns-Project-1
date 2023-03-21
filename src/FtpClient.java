@@ -28,8 +28,8 @@ public class FtpClient {
             while (true) {
                 System.out.print("Command: ");
                 String messageToServer = scan.nextLine().trim();
-                if (messageToServer.equals("QUIT")) break;
                 outStream.writeUTF(messageToServer);
+                if (messageToServer.equals("QUIT")) break;
 
 
             }

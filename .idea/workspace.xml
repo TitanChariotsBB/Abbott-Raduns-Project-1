@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Updated README">
+    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Added Dr. Zhang's boilerplate, deleted Main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FtpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FtpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679321532207</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Dr. Zhang's boilerplate, deleted Main">
+      <created>1679356839709</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679356839709</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,6 +111,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated README" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README" />
+    <MESSAGE value="Added Dr. Zhang's boilerplate, deleted Main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Dr. Zhang's boilerplate, deleted Main" />
   </component>
 </project>
