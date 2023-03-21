@@ -1,3 +1,8 @@
+/** Author:  Christian Abbott, Ben Raduns
+ * Course:  COMP 342 Data Communications and Networking
+ * Date:    5 April 2023
+ * Description: Client side of FTP protocol
+ */
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,5 +16,30 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
 public class FtpClient {
-   
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Welcome to GCC FTP client!");
+
+        try {
+            Socket socket = new Socket("localhost", 9001);
+            DataInputStream inStream = new DataInputStream(socket.getInputStream());
+            DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
+
+            while (true) {
+                System.out.print("Command: ");
+                String messageToServer = scan.nextLine().trim();
+                if (messageToServer.equals("QUIT")) break;
+                outStream.writeUTF(messageToServer);
+
+
+            }
+
+            socket.close();
+            inStream.close();
+            outStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
