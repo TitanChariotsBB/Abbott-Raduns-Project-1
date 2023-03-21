@@ -16,6 +16,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
 public class FtpClient {
+    public Path currentDirectory;
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Welcome to GCC FTP client!");
@@ -28,8 +29,8 @@ public class FtpClient {
             while (true) {
                 System.out.print("Command: ");
                 String messageToServer = scan.nextLine().trim();
-                if (messageToServer.equals("QUIT")) break;
                 outStream.writeUTF(messageToServer);
+                if (messageToServer.equals("QUIT")) break;
 
 
             }
