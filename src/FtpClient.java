@@ -4,6 +4,8 @@
  * Description: Client side of FTP protocol
  */
 
+//test to see if I can make commits, will delete
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.Socket;
