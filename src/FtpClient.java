@@ -34,7 +34,6 @@ public class FtpClient {
                 outStream.writeUTF(messageToServer);
                 if (messageToServer.equals("QUIT")) break;
 
-
             }
 
             socket.close();

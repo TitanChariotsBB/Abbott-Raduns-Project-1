@@ -8,11 +8,17 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class FtpServer {
+    public static Path currentDirectory = Paths.get("server_folder");
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Welcome to GCC FTP service!");
@@ -29,6 +35,9 @@ public class FtpServer {
                     System.out.println("Connection terminated by client");
                     break;
                 }
+                if (messageFromClient.equals("LIST")) {
+                    System.out.println(list());
+                }
                 System.out.println("Received command " + messageFromClient);
 
 
@@ -39,5 +48,17 @@ public class FtpServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String list() throws IOException {
+        Set<String> files = new HashSet<>();
+        try { DirectoryStream<Path> stream = Files.newDirectoryStream(currentDirectory);
+            for (Path path : stream) {
+                files.add(path.getFileName().toString());
+            }}
+        catch (IOException e) {
+            System.out.println("Directory could not be found");
+        }
+        return files.toString();
     }
 }
