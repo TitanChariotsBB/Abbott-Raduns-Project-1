@@ -18,7 +18,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class FtpServer {
-    public static Path currentDirectory = Paths.get("server_folder");
+    //Current working directory of Project
+    public static Path currentDirectory = Paths.get("");
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Welcome to GCC FTP service!");
@@ -50,6 +52,11 @@ public class FtpServer {
         }
     }
 
+    /**
+     * Lists the files found in the current directory
+     * @return a string listing the files
+     * @throws IOException if the directory cannot be found
+     */
     public static String list() throws IOException {
         Set<String> files = new HashSet<>();
         try { DirectoryStream<Path> stream = Files.newDirectoryStream(currentDirectory);
@@ -57,7 +64,7 @@ public class FtpServer {
                 files.add(path.getFileName().toString());
             }}
         catch (IOException e) {
-            System.out.println("Directory could not be found");
+            return ("Directory could not be found");
         }
         return files.toString();
     }
