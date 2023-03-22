@@ -33,7 +33,10 @@ public class FtpClient {
                 String messageToServer = scan.nextLine().trim();
                 outStream.writeUTF(messageToServer);
                 if (messageToServer.equals("QUIT")) break;
-
+                if (messageToServer.equals("LIST")) {
+                    String messageFromServer = inStream.readUTF();
+                    System.out.println(messageFromServer);
+                }
             }
 
             socket.close();

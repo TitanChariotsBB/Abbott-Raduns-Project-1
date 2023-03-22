@@ -36,7 +36,7 @@ public class FtpServer {
                     break;
                 }
                 if (messageFromClient.equals("LIST")) {
-                    System.out.println(list());
+                    outStream.writeUTF(list());
                 }
                 System.out.println("Received command " + messageFromClient);
 

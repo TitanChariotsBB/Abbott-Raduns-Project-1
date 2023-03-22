@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Changed jdk back to version 17">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FtpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FtpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpServer.java" afterDir="false" />
-    </list>
+    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="List is sort of half done: it reads the files, but doesn't send the data back to the client yet" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679508307561</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="List is sort of half done: it reads the files, but doesn't send the data back to the client yet">
+      <created>1679511069740</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679511069740</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,6 +140,7 @@
     <MESSAGE value="Added Dr. Zhang's boilerplate, deleted Main" />
     <MESSAGE value="Fixed crash on client QUIT command" />
     <MESSAGE value="Changed jdk back to version 17" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed jdk back to version 17" />
+    <MESSAGE value="List is sort of half done: it reads the files, but doesn't send the data back to the client yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="List is sort of half done: it reads the files, but doesn't send the data back to the client yet" />
   </component>
 </project>
