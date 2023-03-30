@@ -32,7 +32,7 @@ public class FtpClient {
                 String messageToServer = scan.nextLine().trim();
                 outStream.writeUTF(messageToServer);
                 if (messageToServer.equals("QUIT")) break;
-                if (messageToServer.equals("LIST")) {
+                if (messageToServer.equals("LIST") || messageToServer.equals("PWD")) {
                     String messageFromServer = inStream.readUTF();
                     System.out.println(messageFromServer);
                 }

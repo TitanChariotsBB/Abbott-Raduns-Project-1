@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="LIST should be working">
+    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Added comments and switched currentDirectory to the root">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FtpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FtpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpServer.java" afterDir="false" />
@@ -131,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679512209611</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added comments and switched currentDirectory to the root">
+      <created>1679513130755</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679513130755</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,6 +160,7 @@
     <MESSAGE value="Changed jdk back to version 17" />
     <MESSAGE value="List is sort of half done: it reads the files, but doesn't send the data back to the client yet" />
     <MESSAGE value="LIST should be working" />
-    <option name="LAST_COMMIT_MESSAGE" value="LIST should be working" />
+    <MESSAGE value="Added comments and switched currentDirectory to the root" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comments and switched currentDirectory to the root" />
   </component>
 </project>

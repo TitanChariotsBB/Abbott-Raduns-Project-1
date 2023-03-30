@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class FtpServer {
     //Current working directory of Project
-    public static Path currentDirectory = Paths.get("");
+    public static Path currentDirectory = Paths.get("").toAbsolutePath();
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -39,6 +39,9 @@ public class FtpServer {
                 }
                 if (messageFromClient.equals("LIST")) {
                     outStream.writeUTF(list());
+                }
+                if(messageFromClient.equals("PWD")) {
+                    outStream.writeUTF(pwd());
                 }
                 System.out.println("Received command " + messageFromClient);
 
@@ -67,5 +70,12 @@ public class FtpServer {
             return ("Directory could not be found");
         }
         return files.toString();
+    }
+
+    /**
+     * @return The current working directory as a String
+     */
+    public static String pwd(){
+        return currentDirectory.toString();
     }
 }
