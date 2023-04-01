@@ -7,15 +7,9 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 public class FtpServer {
     //Current working directory of Project
@@ -60,12 +54,9 @@ public class FtpServer {
                         throw new RuntimeException(e);
                     }
                     int bytes = 0;
-                    // Here we send the File to Server
                     outStream.writeLong(file.length());
-                    // Here we  break file into chunks
                     byte[] buffer = new byte[1024];
                     while ((bytes = fileInputStream.read(buffer)) != -1) {
-                        // Send the file to Server Socket
                         outStream.write(buffer, 0, bytes);
                         outStream.flush();
                     }

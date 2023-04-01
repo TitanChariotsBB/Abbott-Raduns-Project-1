@@ -4,20 +4,16 @@
  * Description: Client side of FTP protocol
  */
 
-//test to see if I can make commits, will delete
-
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class FtpClient {
-
-    public static Path path = Paths.get("client_folder").toAbsolutePath();
-    public static File currentDirectory = new File(path.toString());
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -39,19 +35,19 @@ public class FtpClient {
                     // Prepare to receive file
                     String newFileName = messageToServer.replace("RETR ","");
                     File newFile = new File("client_folder/"+newFileName);
-                    if (!newFile.exists())
+                    if (!newFile.exists()) {
                         newFile.createNewFile();
+                    }
 
                     outStream.writeUTF(messageToServer);
 
                     int bytes = 0;
-                    FileOutputStream fileOutputStream = new FileOutputStream("client_folder/"+newFileName);
+                    FileOutputStream fileOutputStream = new FileOutputStream("client_folder/" + newFileName);
 
                     long size = inStream.readLong(); // read file size
                     System.out.println("Size of incoming file: " + size);
                     byte[] buffer = new byte[1024];
-                    while (size > 0 && (bytes = inStream.read(buffer,
-                            0, (int)Math.min(buffer.length, size))) != -1) {
+                    while (size > 0 && (bytes = inStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
                         fileOutputStream.write(buffer, 0, bytes);
                         size -= bytes;
                     }

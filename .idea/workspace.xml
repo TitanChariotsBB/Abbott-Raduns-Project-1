@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Updated LIST and PWD. Prototyping RETR">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Got file creation of RETR working">
       <change beforePath="$PROJECT_DIR$/src/FtpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FtpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680367061891</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Got file creation of RETR working">
+      <created>1680367829661</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680367829661</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,6 +134,7 @@
     <MESSAGE value="Added Dr. Zhang's boilerplate, deleted Main" />
     <MESSAGE value="Fixed crash on client QUIT command" />
     <MESSAGE value="Updated LIST and PWD. Prototyping RETR" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated LIST and PWD. Prototyping RETR" />
+    <MESSAGE value="Got file creation of RETR working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got file creation of RETR working" />
   </component>
 </project>
