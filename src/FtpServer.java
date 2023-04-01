@@ -19,7 +19,8 @@ import java.util.Set;
 
 public class FtpServer {
     //Current working directory of Project
-    public static Path currentDirectory = Paths.get("").toAbsolutePath();
+    public static Path path = Paths.get("server_folder").toAbsolutePath();
+    public static File currentDirectory = new File(path.toString());
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -37,15 +38,39 @@ public class FtpServer {
                     System.out.println("Connection terminated by client");
                     break;
                 }
-                if (messageFromClient.equals("LIST")) {
+                else if (messageFromClient.equals("LIST")) {
                     outStream.writeUTF(list());
                 }
-                if(messageFromClient.equals("PWD")) {
+                else if (messageFromClient.equals("PWD")) {
                     outStream.writeUTF(pwd());
                 }
+                else if (messageFromClient.equals("STOR")) {
+                    System.out.println("Store");
+                }
+                else if (messageFromClient.startsWith("RETR")) {
+                    String fileToSendName = messageFromClient.replace("RETR ", "");
+                    System.out.println(fileToSendName);
+
+                    File file = new File("server_folder/"+fileToSendName);
+                    System.out.println(file.getAbsolutePath());
+                    FileInputStream fileInputStream = null;
+                    try {
+                        fileInputStream = new FileInputStream(file);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    int bytes = 0;
+                    // Here we send the File to Server
+                    outStream.writeLong(file.length());
+                    // Here we  break file into chunks
+                    byte[] buffer = new byte[1024];
+                    while ((bytes = fileInputStream.read(buffer)) != -1) {
+                        // Send the file to Server Socket
+                        outStream.write(buffer, 0, bytes);
+                        outStream.flush();
+                    }
+                }
                 System.out.println("Received command " + messageFromClient);
-
-
             } while (true);
 
             socket.close();
@@ -61,21 +86,23 @@ public class FtpServer {
      * @throws IOException if the directory cannot be found
      */
     public static String list() throws IOException {
-        Set<String> files = new HashSet<>();
-        try { DirectoryStream<Path> stream = Files.newDirectoryStream(currentDirectory);
-            for (Path path : stream) {
-                files.add(path.getFileName().toString());
-            }}
-        catch (IOException e) {
-            return ("Directory could not be found");
+        File[] files = currentDirectory.listFiles();
+        StringBuilder sb = new StringBuilder();
+        if (files != null) {
+            for (File i : files) {
+                if (i.isFile()) {
+                    sb.append(i.getName());
+                    sb.append("\n");
+                }
+            }
         }
-        return files.toString();
+        return sb.toString();
     }
 
     /**
      * @return The current working directory as a String
      */
     public static String pwd(){
-        return currentDirectory.toString();
+        return currentDirectory.toString() + "\n";
     }
 }
