@@ -4,10 +4,7 @@
  * Description: Client side of FTP protocol
  */
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -51,12 +48,27 @@ public class FtpClient {
                     System.out.println("File received!\n");
 
                 }
-                else if (messageToServer.equals("STOR")) {
+                else if (messageToServer.startsWith("STOR")) {
                     String fileToSendName = messageToServer.replace("STOR ", "");
-                    File fileToSend = new File(fileToSendName);
-                    System.out.println(fileToSend.getAbsolutePath());
+
+                    outStream.writeUTF(messageToServer);
+
+                    File file = new File("client_folder/"+fileToSendName);
+                    FileInputStream fileInputStream = null;
+                    try {
+                        fileInputStream = new FileInputStream(file);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    int bytes = 0;
+                    outStream.writeLong(file.length());
+                    byte[] buffer = new byte[1024];
+                    while ((bytes = fileInputStream.read(buffer)) != -1) {
+                        outStream.write(buffer, 0, bytes);
+                        outStream.flush();
+                    }
+                    System.out.println(fileToSendName + " stored correctly!\n");
                 }
-                // LIST and PWD
                 else if (messageToServer.equals("LIST") || messageToServer.equals("PWD")) {
                     outStream.writeUTF(messageToServer);
                     String messageFromServer = inStream.readUTF();

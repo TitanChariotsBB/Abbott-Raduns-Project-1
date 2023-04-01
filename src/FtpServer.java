@@ -28,7 +28,7 @@ public class FtpServer {
 
             do {
                 String messageFromClient = inStream.readUTF();
-                System.out.println("Received command " + messageFromClient);
+                System.out.println("Received command '" + messageFromClient + "'");
                 if (messageFromClient.equals("QUIT")) {
                     System.out.println("Connection terminated by client");
                     break;
@@ -39,13 +39,28 @@ public class FtpServer {
                 else if (messageFromClient.equals("PWD")) {
                     outStream.writeUTF(pwd());
                 }
-                else if (messageFromClient.equals("STOR")) {
-                    System.out.println("Store");
+                else if (messageFromClient.startsWith("STOR")) {
+                    String newFileName = messageFromClient.replace("STOR ","");
+                    File newFile = new File("server_folder/"+newFileName);
+                    if (!newFile.exists()) {
+                        newFile.createNewFile();
+                    }
+
+                    int bytes = 0;
+                    FileOutputStream fileOutputStream = new FileOutputStream("server_folder/" + newFileName);
+
+                    long size = inStream.readLong(); // read file size
+                    byte[] buffer = new byte[1024];
+                    while (size > 0 && (bytes = inStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
+                        fileOutputStream.write(buffer, 0, bytes);
+                        size -= bytes;
+                    }
+                    System.out.println("File received!\n");
                 }
                 else if (messageFromClient.startsWith("RETR")) {
                     String fileToSendName = messageFromClient.replace("RETR ", "");
-                    System.out.println("Sending " + fileToSendName);
 
+                    System.out.println("Sending " + fileToSendName);
                     File file = new File("server_folder/"+fileToSendName);
                     FileInputStream fileInputStream = null;
                     try {
@@ -93,7 +108,7 @@ public class FtpServer {
     /**
      * @return The current working directory as a String
      */
-    public static String pwd(){
+    public static String pwd() {
         return currentDirectory.toString() + "\n";
     }
 }
