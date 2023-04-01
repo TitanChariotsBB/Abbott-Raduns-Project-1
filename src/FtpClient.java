@@ -38,6 +38,9 @@ public class FtpClient {
                 else if (messageToServer.startsWith("RETR")) {
                     // Prepare to receive file
                     String newFileName = messageToServer.replace("RETR ","");
+                    File newFile = new File("client_folder/"+newFileName);
+                    if (!newFile.exists())
+                        newFile.createNewFile();
 
                     outStream.writeUTF(messageToServer);
 
