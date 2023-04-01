@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Got file creation of RETR working">
-      <change beforePath="$PROJECT_DIR$/src/FtpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FtpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FtpServer.java" afterDir="false" />
-    </list>
+    <list default="true" id="0cb9e162-b8fc-4435-9dee-4307bca89e25" name="Changes" comment="Code cleanup" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680367829661</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Code cleanup">
+      <created>1680368430632</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680368430632</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,6 +139,7 @@
     <MESSAGE value="Fixed crash on client QUIT command" />
     <MESSAGE value="Updated LIST and PWD. Prototyping RETR" />
     <MESSAGE value="Got file creation of RETR working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got file creation of RETR working" />
+    <MESSAGE value="Code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code cleanup" />
   </component>
 </project>
