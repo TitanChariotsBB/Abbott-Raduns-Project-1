@@ -28,6 +28,7 @@ public class FtpServer {
 
             do {
                 String messageFromClient = inStream.readUTF();
+                System.out.println("Received command " + messageFromClient);
                 if (messageFromClient.equals("QUIT")) {
                     System.out.println("Connection terminated by client");
                     break;
@@ -43,10 +44,9 @@ public class FtpServer {
                 }
                 else if (messageFromClient.startsWith("RETR")) {
                     String fileToSendName = messageFromClient.replace("RETR ", "");
-                    System.out.println(fileToSendName);
+                    System.out.println("Sending " + fileToSendName);
 
                     File file = new File("server_folder/"+fileToSendName);
-                    System.out.println(file.getAbsolutePath());
                     FileInputStream fileInputStream = null;
                     try {
                         fileInputStream = new FileInputStream(file);
@@ -60,8 +60,8 @@ public class FtpServer {
                         outStream.write(buffer, 0, bytes);
                         outStream.flush();
                     }
+                    System.out.println(fileToSendName + " sent!");
                 }
-                System.out.println("Received command " + messageFromClient);
             } while (true);
 
             socket.close();

@@ -43,23 +43,27 @@ public class FtpClient {
                     FileOutputStream fileOutputStream = new FileOutputStream("client_folder/" + newFileName);
 
                     long size = inStream.readLong(); // read file size
-                    System.out.println("Size of incoming file: " + size);
                     byte[] buffer = new byte[1024];
                     while (size > 0 && (bytes = inStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
                         fileOutputStream.write(buffer, 0, bytes);
                         size -= bytes;
                     }
-                    System.out.println("Here are the file contents!");
+                    System.out.println("File received!\n");
+
                 }
                 else if (messageToServer.equals("STOR")) {
                     String fileToSendName = messageToServer.replace("STOR ", "");
                     File fileToSend = new File(fileToSendName);
+                    System.out.println(fileToSend.getAbsolutePath());
                 }
                 // LIST and PWD
-                else {
+                else if (messageToServer.equals("LIST") || messageToServer.equals("PWD")) {
                     outStream.writeUTF(messageToServer);
                     String messageFromServer = inStream.readUTF();
                     System.out.println(messageFromServer);
+                }
+                else {
+                    System.out.println("Invalid command.\n");
                 }
             }
 
