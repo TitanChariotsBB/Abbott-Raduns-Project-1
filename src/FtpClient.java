@@ -50,24 +50,15 @@ public class FtpClient {
                 }
                 else if (messageToServer.startsWith("STOR")) {
                     String fileToSendName = messageToServer.replace("STOR ", "");
-
                     outStream.writeUTF(messageToServer);
-
                     File file = new File("client_folder/"+fileToSendName);
-                    FileInputStream fileInputStream = null;
+                    FileInputStream fileInputStream;
                     try {
                         fileInputStream = new FileInputStream(file);
+                        stor(file, outStream, fileInputStream);
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     }
-                    int bytes = 0;
-                    outStream.writeLong(file.length());
-                    byte[] buffer = new byte[1024];
-                    while ((bytes = fileInputStream.read(buffer)) != -1) {
-                        outStream.write(buffer, 0, bytes);
-                        outStream.flush();
-                    }
-                    System.out.println(fileToSendName + " stored correctly!\n");
                 }
                 else if (messageToServer.equals("LIST") || messageToServer.equals("PWD")) {
                     outStream.writeUTF(messageToServer);
@@ -86,5 +77,23 @@ public class FtpClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Sends the specified file from the client folder to the server folder
+     * @param file File to be sent
+     * @param outStream Reference to the general DataOutputStream from the socket used to send data to server
+     * @param fileStream Reads the data from the specified file
+     * @throws IOException if it cannot read or write to the streams
+     */
+    public static void stor(File file, DataOutputStream outStream, FileInputStream fileStream) throws IOException {
+        int bytes = 0;
+        outStream.writeLong(file.length());
+        byte[] buffer = new byte[1024];
+        while ((bytes = fileStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytes);
+            outStream.flush();
+        }
+        System.out.println(file.getName() + " stored correctly!\n");
     }
 }

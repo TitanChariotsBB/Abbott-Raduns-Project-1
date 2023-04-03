@@ -45,17 +45,8 @@ public class FtpServer {
                     if (!newFile.exists()) {
                         newFile.createNewFile();
                     }
+                    stor(newFile, inStream);
 
-                    int bytes = 0;
-                    FileOutputStream fileOutputStream = new FileOutputStream("server_folder/" + newFileName);
-
-                    long size = inStream.readLong(); // read file size
-                    byte[] buffer = new byte[1024];
-                    while (size > 0 && (bytes = inStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
-                        fileOutputStream.write(buffer, 0, bytes);
-                        size -= bytes;
-                    }
-                    System.out.println("File received!\n");
                 }
                 else if (messageFromClient.startsWith("RETR")) {
                     String fileToSendName = messageFromClient.replace("RETR ", "");
@@ -110,5 +101,24 @@ public class FtpServer {
      */
     public static String pwd() {
         return currentDirectory.toString() + "\n";
+    }
+
+    /**
+     * Takes the sent file and stores it into the server folder
+     * @param file The file that is being sent to the server folder
+     * @param inStream Reference to the overarching input stream from the socket
+     * @throws IOException if file is not found or if the inStream cannot be read
+     */
+    public static void stor(File file, DataInputStream inStream) throws IOException{
+        int bytes = 0;
+        FileOutputStream fileOutputStream = new FileOutputStream("server_folder/" + file.getName());
+
+        long size = inStream.readLong(); // read file size
+        byte[] buffer = new byte[1024];
+        while (size > 0 && (bytes = inStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
+            fileOutputStream.write(buffer, 0, bytes);
+            size -= bytes;
+        }
+        System.out.println("File received!\n");
     }
 }
