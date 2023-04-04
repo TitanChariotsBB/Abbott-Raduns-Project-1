@@ -50,23 +50,15 @@ public class FtpServer {
                 }
                 else if (messageFromClient.startsWith("RETR")) {
                     String fileToSendName = messageFromClient.replace("RETR ", "");
-
                     System.out.println("Sending " + fileToSendName);
                     File file = new File("server_folder/"+fileToSendName);
-                    FileInputStream fileInputStream = null;
+                    FileInputStream fileInputStream;
                     try {
                         fileInputStream = new FileInputStream(file);
+                        retr(file, outStream, fileInputStream);
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     }
-                    int bytes = 0;
-                    outStream.writeLong(file.length());
-                    byte[] buffer = new byte[1024];
-                    while ((bytes = fileInputStream.read(buffer)) != -1) {
-                        outStream.write(buffer, 0, bytes);
-                        outStream.flush();
-                    }
-                    System.out.println(fileToSendName + " sent!");
                 }
             } while (true);
 
@@ -120,5 +112,23 @@ public class FtpServer {
             size -= bytes;
         }
         System.out.println("File received!\n");
+    }
+
+    /**
+     * Retrieves the specified file from the client folder
+     * @param file File to be retrieved
+     * @param outStream Reference to the general DataOutputStream from the socket used to send data to server
+     * @param fileStream Reads the data from the specified file
+     * @throws IOException if it cannot read or write to the streams
+     */
+    public static void retr(File file, DataOutputStream outStream, FileInputStream fileStream) throws IOException {
+        int bytes = 0;
+        outStream.writeLong(file.length());
+        byte[] buffer = new byte[1024];
+        while ((bytes = fileStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytes);
+            outStream.flush();
+        }
+        System.out.println(file.getName() + " sent!");
     }
 }

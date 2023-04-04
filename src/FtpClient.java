@@ -33,20 +33,8 @@ public class FtpClient {
                     if (!newFile.exists()) {
                         newFile.createNewFile();
                     }
-
                     outStream.writeUTF(messageToServer);
-
-                    int bytes = 0;
-                    FileOutputStream fileOutputStream = new FileOutputStream("client_folder/" + newFileName);
-
-                    long size = inStream.readLong(); // read file size
-                    byte[] buffer = new byte[1024];
-                    while (size > 0 && (bytes = inStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
-                        fileOutputStream.write(buffer, 0, bytes);
-                        size -= bytes;
-                    }
-                    System.out.println("File received!\n");
-
+                    retr(newFile,  inStream);
                 }
                 else if (messageToServer.startsWith("STOR")) {
                     String fileToSendName = messageToServer.replace("STOR ", "");
@@ -95,5 +83,24 @@ public class FtpClient {
             outStream.flush();
         }
         System.out.println(file.getName() + " stored correctly!\n");
+    }
+
+    /**
+     * Retrieves file from the server folder and puts in client folder
+     * @param file File to be retrieved
+     * @param inStream Reference to general DataInputStream used by the socket
+     * @throws IOException if it can't read from the input stream/write to output stream
+     */
+    public static void retr(File file, DataInputStream inStream) throws IOException {
+        int bytes = 0;
+        FileOutputStream fileOutputStream = new FileOutputStream("client_folder/" + file.getName());
+
+        long size = inStream.readLong(); // read file size
+        byte[] buffer = new byte[1024];
+        while (size > 0 && (bytes = inStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
+            fileOutputStream.write(buffer, 0, bytes);
+            size -= bytes;
+        }
+        System.out.println("File received!\n");
     }
 }

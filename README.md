@@ -13,13 +13,11 @@ On the server window type `java src\FtpServer.java`, and on the client window ty
 
 # TODO
 
-## Put more code in methods
+## Clean up Methods
 
-Currently, all the file sending code is just sitting there,
-not in a nice self-contained methods. One would need to pass
-references to DataInputStream and DataOutputStream.
+Methods are done in a very messy way. If we have time we could try 
+improve readability, but it does work the way it is.
 
 ## Comment
 
-Said methods need to be commented, 
-and trickier sections need inline comments.
+Methods are commented, but some inline commenting should be added.
